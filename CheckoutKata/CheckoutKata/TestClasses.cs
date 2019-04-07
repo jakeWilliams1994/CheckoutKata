@@ -36,5 +36,14 @@ namespace CheckoutKata
             checkout.Scan("D");
             Assert.AreEqual(checkout.GetTotalPrice(), 15);
         }
+
+        [TestMethod]
+        public void WhenScanningMulitpleAs_CheckoutShouldCountSumOfAs()
+        {
+            var checkout = new Checkout();
+            checkout.Scan("A");
+            checkout.Scan("A");
+            Assert.AreEqual(checkout.GetTotalPrice(), 100);
+        }
     }
 }
