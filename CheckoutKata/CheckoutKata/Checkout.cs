@@ -19,9 +19,9 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            if (_numberOfAs == 3)
+            if (_numberOfAs % 3 == 0)
             {
-                _total -= 20;
+                _total -= (20 * (_numberOfAs / 3));
             }
             return _total;
         }
