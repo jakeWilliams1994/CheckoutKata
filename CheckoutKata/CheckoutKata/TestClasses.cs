@@ -12,5 +12,13 @@ namespace CheckoutKata
             checkout.Scan("A");
             Assert.AreEqual(checkout.GetTotalPrice(), 50);
         }
+
+        [TestMethod]
+        public void WhenSkuIsB_CheckoutShouldReturn30()
+        {
+            var checkout = new Checkout();
+            checkout.Scan("B");
+            Assert.AreEqual(checkout.GetTotalPrice(), 30);
+        }
     }
 }
