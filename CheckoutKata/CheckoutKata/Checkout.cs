@@ -6,31 +6,30 @@ namespace CheckoutKata
     public class Checkout
     {
         private int _total;
-        private int _numberOfAs;
-        private int _numberOfBs;
         private Dictionary<string, int> _prices = new Dictionary<string, int> { { "A", 50 }, { "B", 30 }, { "C", 20 }, { "D", 15 } };
+        private Dictionary<string, int> _scanned = new Dictionary<string, int> { { "A", 0 }, { "B", 0 } };
         public void Scan(string sku)
         {
             _total += _prices[sku];
             if (sku == "A")
             {
-                _numberOfAs++;
+                _scanned[sku]++;
             }
             if (sku == "B")
             {
-                _numberOfBs++;
+                _scanned[sku]++;
             }
         }
 
         public int GetTotalPrice()
         {
-            if (_numberOfAs % 3 == 0)
+            if (_scanned["A"] % 3 == 0)
             {
-                _total -= (20 * (_numberOfAs / 3));
+                _total -= (20 * (_scanned["A"] / 3));
             }
-            if (_numberOfBs % 2 == 0)
+            if (_scanned["B"] % 2 == 0)
             {
-                _total -= (15 * (_numberOfBs / 2));
+                _total -= (15 * (_scanned["B"] / 2));
             }
             return _total;
         }
