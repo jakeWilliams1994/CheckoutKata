@@ -7,8 +7,12 @@ namespace CheckoutKata
         private int _total;
         private Dictionary<string, int> _prices = new Dictionary<string, int> { { "A", 50 }, { "B", 30 }, { "C", 20 }, { "D", 15 } };
         private Dictionary<string, int> _scanned = new Dictionary<string, int>();
-        private Dictionary<string, int> _offerThresholds = new Dictionary<string, int> { { "A", 3 }, { "B", 2 } };
-        private Dictionary<string, int> _offers = new Dictionary<string, int> { { "A", 20 }, { "B", 15 } };
+        private OfferCalculator _offerCalulator;
+
+        public Checkout(OfferCalculator offerCalulator)
+        {
+            _offerCalulator = offerCalulator;
+        }
         public void Scan(string sku)
         {
             _total += _prices[sku];
@@ -23,14 +27,7 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            foreach (var item in _scanned.Keys)
-            {
-                if (_offerThresholds.ContainsKey(item) && _scanned[item] % _offerThresholds[item] == 0)
-                {
-                    _total -= (_offers[item] * (_scanned[item] / _offerThresholds[item]));
-                }
-            }
-            return _total;
+            return _total -= _offerCalulator.CalculateOffer(_scanned);
         }
     }
 }

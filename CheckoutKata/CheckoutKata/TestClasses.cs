@@ -8,7 +8,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenSkuIsA_CheckoutShouldReturn50()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("A");
             Assert.AreEqual(50, checkout.GetTotalPrice());
         }
@@ -16,7 +16,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenSkuIsB_CheckoutShouldReturn30()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("B");
             Assert.AreEqual(30 ,checkout.GetTotalPrice());
         }
@@ -24,7 +24,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenSkuIsC_CheckoutShouldReturn20()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("C");
             Assert.AreEqual(20, checkout.GetTotalPrice());
         }
@@ -32,7 +32,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenSkuIsD_CheckoutShouldReturn15()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("D");
             Assert.AreEqual(15, checkout.GetTotalPrice());
         }
@@ -40,7 +40,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenScanningMulitpleAs_CheckoutShouldCountSumOfAs()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("A");
             checkout.Scan("A");
             Assert.AreEqual(100, checkout.GetTotalPrice());
@@ -49,7 +49,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenScanningThreeAs_CheckoutShouldApplyOffer()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("A");
             checkout.Scan("A");
             checkout.Scan("A");
@@ -59,7 +59,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenScanningSixAs_CheckoutShouldApplyOffer()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("A");
             checkout.Scan("A");
             checkout.Scan("A");
@@ -72,7 +72,7 @@ namespace CheckoutKata
         [TestMethod]
         public void WhenScanningTwoBs_CheckoutShouldApplyOffer()
         {
-            var checkout = new Checkout();
+            var checkout = new Checkout(new OfferCalculator());
             checkout.Scan("B");
             checkout.Scan("B");
             Assert.AreEqual(45, checkout.GetTotalPrice());
