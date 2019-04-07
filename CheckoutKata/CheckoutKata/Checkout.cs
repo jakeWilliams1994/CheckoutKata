@@ -4,14 +4,18 @@ namespace CheckoutKata
 {
     public class Checkout
     {
+        private int _total;
         public void Scan(string sku)
         {
-            return;
+            if (sku == "A")
+                _total += 50;
+            else
+                _total += 30;
         }
 
         public int GetTotalPrice()
         {
-            return 50;
+            return _total;
         }
     }
 }
