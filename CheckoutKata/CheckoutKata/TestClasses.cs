@@ -55,5 +55,18 @@ namespace CheckoutKata
             checkout.Scan("A");
             Assert.AreEqual(checkout.GetTotalPrice(), 130);
         }
+
+        [TestMethod]
+        public void WhenScanningSixAs_CheckoutShouldApplyOffer()
+        {
+            var checkout = new Checkout();
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            Assert.AreEqual(checkout.GetTotalPrice(), 130);
+        }
     }
 }
